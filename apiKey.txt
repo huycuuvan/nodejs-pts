@@ -1,0 +1,125 @@
+73gRjFzA9ERewEUcGJycjk1r
+
+
+const clientId = "ca38e711703a4b75b259fcdc9563de63";
+// const clientSecret = "p8e-Ebq3i_Xo3anVQjr_c4Mb4d1Rh8RWFUOf";
+
+// import { v2 as cloudinary } from "cloudinary";
+
+// (async function () {
+//   // Configuration
+//   cloudinary.config({
+//     cloud_name: "drds2vvmo",
+//     api_key: "977156325898295",
+//     api_secret: "wpQdBpXkZKiBQFNlmK5T-idwU-g", // Click 'View API Keys' above to copy your API secret
+//   });
+
+//   // Upload an image
+//   const uploadResult = await cloudinary.uploader
+//     .upload(
+//       "https://res.cloudinary.com/demo/image/upload/getting-started/output.jpg",
+//       {
+//         public_id: "something",
+//       }
+//     )
+//     .catch((error) => {
+//       console.log(error);
+//     });
+
+//   console.log(uploadResult);
+
+//   // Optimize delivery by resizing and applying auto-format and auto-quality
+//   const optimizeUrl = cloudinary.url("something", {
+//     fetch_format: "auto",
+//     quality: "auto",
+//   });
+
+//   console.log(optimizeUrl);
+
+//   // Transform the image: auto-crop to square aspect_ratio
+//   const autoCropUrl = cloudinary.url("something", {
+//     crop: "auto",
+//     gravity: "auto",
+//     width: 500,
+//     height: 500,
+//   });
+
+//   console.log(autoCropUrl);
+// })();
+
+// async function getAccessToken() {
+//   try {
+//     const response = await axios.post(
+//       "https://ims-na1.adobelogin.com/ims/token/v1",
+//       null,
+//       {
+//         headers: {
+//           "Content-Type": "application/x-www-form-urlencoded",
+//         },
+//         params: {
+//           client_id: clientId,
+//           client_secret: clientSecret,
+//           grant_type: "client_credentials",
+//           scope: "openid, AdobeID, read_organizations",
+//         },
+//       }
+//     );
+
+//     return response.data.access_token;
+//   } catch (error) {
+//     console.error("Error fetching access token:", error.response.data);
+//     return null;
+//   }
+// }
+
+// // Gọi API Photoshop để chỉnh sửa ảnh
+// async function editImage() {
+//   const accessToken = await getAccessToken();
+//   if (!accessToken) return;
+
+//   const apiUrl = "https://image.adobe.io/pie/psdService/photoshopActions"; // Ví dụ endpoint cho Lightroom hoặc các endpoint API khác tùy thuộc vào thao tác bạn cần
+//   const imageUrl =
+//     "https://drive.google.com/uc?export=download&id=19S0DhuyJ76hIVigx1tuitW7DOtwdpb0x"; // URL của ảnh mà bạn muốn chỉnh sửa
+
+//   try {
+//     const response = await axios.post(
+//       apiUrl,
+//       {
+//         inputs: [
+//           {
+//             href: imageUrl, // Sử dụng URL hợp lệ cho ảnh đầu vào
+//             storage: "external", // Xác định nguồn lưu trữ là external
+//           },
+//         ],
+//         options: {
+//           actions: [
+//             {
+//               name: "removeBackground",
+//               href: imageUrl, // Cung cấp URL cho hành động (nếu cần)
+//               storage: "external", // Xác định nguồn lưu trữ cho hành động
+//             },
+//           ],
+//         },
+//         outputs: [
+//           {
+//             href: publicUrl, // Cung cấp URL tạm cho đầu ra
+//             storage: "external", // Xác định nguồn lưu trữ cho đầu ra
+//             type: "image/jpeg", // Chỉ định định dạng của đầu ra (ví dụ: image/jpeg)
+//           },
+//         ],
+//       },
+//       {
+//         headers: {
+//           Authorization: `Bearer ${accessToken}`,
+//           "x-api-key": clientId,
+//           "Content-Type": "application/json",
+//         },
+//       }
+//     );
+//     const publicUrl = await uploadToCloudinary("./assets/outImg.jpg");
+//     console.log("Image editing success:", response.data);
+//   } catch (error) {
+//     console.error("Error editing image:", error.response.data);
+//   }
+// }
+// await editImage();
